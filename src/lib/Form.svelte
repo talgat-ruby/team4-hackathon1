@@ -1,58 +1,45 @@
+
 <script lang="ts">
+import { step } from './stores/store-step';
 import BgSideBar from './img/bg-sidebar-desktop.svg'
 import BgSideBarMobile from './img/bg-sidebar-mobile.svg'
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
+
 </script>
-<body>
-<main>
+
     <nav class="form-steps">
         <picture>
           <source media="(min-width:768px)" srcset={BgSideBar}>
           <img src={BgSideBarMobile} alt="" srcset="">
         </picture>
         <ol>
-          <li class="form-step" data-number="1"><span class="mobile-hidden"><span class="Steps">Step 1</span><br> Your info</span></li>
-          <li class="form-step" data-number="2"><span class="mobile-hidden"><span class="Steps">Step 2</span><br> Select plan</span></li>
-          <li class="form-step" data-number="3"><span class="mobile-hidden"><span class="Steps">Step 3</span><br> Add-ons</span></li>
-          <li class="form-step" data-number="4"><span class="mobile-hidden"><span class="Steps">Step 4</span><br> Summary</span></li>
+          <li class="form-step" ><span><span class="Steps">Step 1</span><br> Your info</span></li>
+          <li class="form-step" ><span><span class="Steps">Step 2</span><br> Select plan</span></li>
+          <li class="form-step" ><span><span class="Steps">Step 3</span><br> Add-ons</span></li>
+          <li class="form-step" ><span><span class="Steps">Step 4</span><br> Summary</span></li>
         </ol>
       </nav>
-<form action="" class="step-container">
+<form on:submit|preventDefault={() => step.updateStep('+')} class="step-container">
+  
     <h2 class="step-title">Personal info</h2>
     <p class="step-subtitle">Please provide your name, email address, and phone number.</p>
     <label for="namefield" class="input-lbl">Name </label>
-    <input type="text" class="input-field" name="name" id="namefield" placeholder="e.g. Stephen King" >
+    <input  type="text"  class="input-field" name="name"  placeholder="e.g. Stephen King" >
 
     <label for="emailfield" class="input-lbl">Email Address </label>
-    <input type="email" class="input-field" name="email" id="emailfield" placeholder="e.g. Stephen King" >
+    <input type="email" class="input-field" name="email"  placeholder="e.g. Stephen King" >
 
     <label for="phonefield" class="input-lbl">Phone Number </label>
-    <input type="tel" class="input-field" name="phone" id="phonefield" placeholder="e.g. +1 234 567 890" >
+    <input type="tel" class="input-field" name="phone" placeholder="e.g. +1 234 567 890" >
+    <button type="submit" >Lets go</button>
    
 </form>
-</main>  
-</body>
+
 <style>
-body{
 
-background: rgb(242, 242, 242);
-}
-main{
-display: flex;
-justify-content: center;
-width: 1050px;
-height: 600px;
-margin-left: 251px;
-margin-top: 105px;
-border-radius: 15px;
-
-box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
-
-background: rgb(255, 255, 255);
-}
 .form-steps{
     position: relative;
     margin: 16px;
