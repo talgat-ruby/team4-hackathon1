@@ -1,5 +1,5 @@
 <script lang="ts">
-    
+	import Button from "./Button.svelte";
 </script>
 <body>
     <h3>Pick add-ons</h3>
@@ -12,4 +12,5 @@
             </div>
         </button>
     </div>
+    <Button/>
 </body>
