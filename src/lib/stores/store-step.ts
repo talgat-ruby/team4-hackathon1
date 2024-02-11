@@ -13,8 +13,7 @@ function createStepStore(){
        return step-=1
      }else{ 
         return 1
-    }
-        
+    } 
 	 	});
 
 	

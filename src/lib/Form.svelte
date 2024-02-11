@@ -1,25 +1,33 @@
 
 <script lang="ts">
+   import { personInfo } from './stores/info';
 import {step} from './stores/store-step'
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 
+
+ const upDate=()=>{step.updateStep("+");
+
+ console.log($personInfo.name , $personInfo.email ,$personInfo.phone);
+ 
+}
+ 
 </script>
 
-<form on:submit={()=>step.updateStep("+")}  class="step-container">
+<form on:submit|preventDefault={upDate} class="step-container">
     <h2 class="step-title">Personal info</h2>
     <p class="step-subtitle">Please provide your name, email address, and phone number.</p>
     <label for="namefield" class="input-lbl">Name </label>
-    <input type="text" class="input-field" name="name" placeholder="e.g. Stephen King" >
+    <input  bind:value={$personInfo.name} type="text" class="input-field" name="name" placeholder="e.g. Stephen King" >
 
     <label for="emailfield" class="input-lbl">Email Address </label>
-    <input type="email" class="input-field" name="email" placeholder="e.g. Stephen King" >
+    <input bind:value={$personInfo.email}  type="email" class="input-field" name="email" placeholder="e.g. Stephen King" >
 
-    <label for="phonefield" class="input-lbl">Phone Number </label>
-    <input type="tel" class="input-field" name="phone" placeholder="e.g. +1 234 567 890" >
-   <button type="submit">Next Step</button>
+    <label  for="phonefield" class="input-lbl">Phone Number </label>
+    <input bind:value={$personInfo.phone}  type="tel" class="input-field" name="phone" placeholder="e.g. +1 234 567 890" >
+   <button type="submit" >Next Step</button>
 </form>
 
 <style>
