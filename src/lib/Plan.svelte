@@ -1,9 +1,14 @@
 <script lang="ts">
 import Button from './Button.svelte';
-import {billingstore, updatePlan, updateBilling} from './stores/Store';
+import {updatePlan, updateBilling} from './stores/Store';
+
+import Arcade from "../lib/img/icon-arcade.svg"
+import Pro from "../lib/img/icon-pro.svg"
+import Advanced from "../lib/img/icon-advanced.svg"
+
 export let subscriptionType = '';
 
-let yearsubs = false;
+export let yearsubs = false;
 
 // type Subscription = {
 // 	plan: Plan;
@@ -39,86 +44,106 @@ function changebilling () {
   <h2 class="step-title">Select your plan</h2>
     <p class="step-subtitle">You have the option of mounthly or yearly billing.</p>
     <div class="button-plan">
-
      
         <label class="radio-btn">
-  
+          <img src={Arcade}>
           <input type="radio" value="arcade" bind:group={subscriptionType} on:click={changePlanArc} />
-          Arcade
-          {#if yearsubs}
+          <p class="step-2-bold">Arcade</p>
+          {#if yearsubs===false}
+          <p class="step-2-price" >Arcade 9$.</p>
+          {:else}
+          <p class="step-2-price" >Arcade 90$.</p>
           <p>2 months free</p>
           {/if}
+          
         </label>
   
         <label class="radio-btn">
+          <img src={Advanced}>
           <input type="radio" value="advanced" bind:group={subscriptionType} on:click={changePlanAdv} />
-          Advanced
-          {#if yearsubs}
+          <p class="step-2-bold">Advanced</p>
+          {#if yearsubs ===false}
+          <p class="step-2-price" >Arcade 12$.</p>
+          {:else}
+          <p class="step-2-price" >Arcade 120$.</p>
           <p>2 months free</p>
           {/if}
         </label>
     
         <label class="radio-btn">
+          <img src={Pro}>
           <input type="radio" value="pro" bind:group={subscriptionType} on:click={changePlan}/>
-          Pro
-          {#if yearsubs}
+          <p class="step-2-bold">Pro</p>
+          {#if yearsubs ===false}
+          <p class="step-2-price" >Pro 15$.</p>
+          {:else}
+          <p class="step-2-price" >Pro 150$.</p>
           <p>2 months free</p>
           {/if}
         </label>
-    
   
-        {#if subscriptionType === 'arcade'}
-          <p>Arcade 9$.</p>
+        <!-- {#if subscriptionType === 'arcade'}
+          <p class="step-2-price" >Arcade 9$.</p>
         {:else if subscriptionType === 'advanced'}
-          <p>Advanced 12$.</p>
+          <p class="step-2-price" >Advanced 12$.</p>
         {:else if subscriptionType === 'pro'}
-          <p>PRO 15$.</p>
+          <p class="step-2-price" >PRO 15$.</p>
         {:else}
           <p>Select subscription type.</p>
-        {/if}
+        {/if} -->
 
+        <div class="checkbox-div">
         <input type="checkbox" bind:checked={yearsubs} on:click={changebilling} />
         {#if yearsubs}
 	      <p>
 		    Yearly.
-    	  </p>
+        </p>
        {:else}
 	      <p>
 	      Monthly.
 	      </p>
         {/if}
-
+      </div>
         <!-- <button on:click={changePlan}>Change plan</button> -->
-
     </div>
-    <Button/>
+    <br><Button/>
 </form>
 
 
 <style>
 
 .button-plan {
-width: 350px;
-height: 200px;
-border-radius: 5px;
-justify-content:center;
-background: rgb(197, 197, 197);
-
+width: 450px;
+height: 160px;
+justify-content:left;
+background: rgb(248, 248, 248);
 }
 
 .radio-btn{
-    margin-top: 5px;
+    /* margin-top: 5px; */
     border: none;
-    background: #2196F3;
-    width: 30%;
-    height: 35%;
+    background: #aec4d6;
+    width: 138px;
+    height: 160px;
     /* padding: 14px 18px; */
     border-radius: 10px;
-
+    border: 1px solid rgb(214, 217, 230);
     cursor: pointer;
     display: inline-block;
 }
-    
+
+.checkbox-div {
+  /* Rectangle */
+margin-top: 5px;
+width: 450px;
+height: 48px;
+left: 640px;
+right: -640px;
+top: 461px;
+bottom: -461px;
+border-radius: 8px;
+background: rgb(248, 249, 255);
+}
 
 body{
 background: rgb(242, 242, 242);
@@ -225,6 +250,20 @@ font-size: 16px;
 font-weight: 500;
 line-height: 18px;
 letter-spacing: 0px;
+text-align: left;
+}
+.step-2-bold {
+color: rgb(2, 41, 89);
+font-family: 'Ubuntu';
+font-size: 16px;
+font-weight: 500;
+text-align: left;
+}
+.step-2-price {
+color: rgb(150, 153, 170);
+font-family: 'Ubuntu';
+font-size: 14px;
+font-weight: 400;
 text-align: left;
 }
 
