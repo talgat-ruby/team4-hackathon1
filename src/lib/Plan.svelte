@@ -1,0 +1,329 @@
+<script lang="ts">
+import Button from './Button.svelte';
+
+export let subscriptionType = '';
+
+let yearsubs = false;
+
+// type Subscription = {
+// 	plan: Plan;
+// 	billing: 'monthly' | 'yearly';
+// };
+
+</script>
+
+<form action="" class="step-container">
+  
+  <h2 class="step-title">Select your plan</h2>
+    <p class="step-subtitle">You have the option of mounthly or yearly billing.</p>
+    <div class="button-plan">
+
+     
+        <label class="radio-btn">
+  
+          <input type="radio" value="basic" bind:group={subscriptionType} />
+          Arcade
+          {#if yearsubs}
+          <p>2 months free</p>
+          {/if}
+        </label>
+  
+        <label class="radio-btn">
+          <input type="radio" value="advanced" bind:group={subscriptionType} />
+          Advanced
+          {#if yearsubs}
+          <p>2 months free</p>
+          {/if}
+        </label>
+    
+        <label class="radio-btn">
+          <input type="radio" value="pro" bind:group={subscriptionType} />
+          Pro
+          {#if yearsubs}
+          <p>2 months free</p>
+          {/if}
+        </label>
+    
+  
+        {#if subscriptionType === 'basic'}
+          <p>Arcade 9$.</p>
+        {:else if subscriptionType === 'advanced'}
+          <p>Advanced 12$.</p>
+        {:else if subscriptionType === 'pro'}
+          <p>PRO 15$.</p>
+        {:else}
+          <p>Select subscription type.</p>
+        {/if}
+
+        <input type="checkbox" bind:checked={yearsubs} />
+        {#if yearsubs}
+	      <p>
+		    Yearly.
+    	  </p>
+       {:else}
+	      <p>
+	      Monthly.
+	      </p>
+        {/if}
+
+    </div>
+    <Button/>
+</form>
+
+
+<style>
+
+.button-plan {
+width: 350px;
+height: 200px;
+border-radius: 5px;
+justify-content:center;
+background: rgb(197, 197, 197);
+
+}
+
+.radio-btn{
+    margin-top: 5px;
+    border: none;
+    background: #2196F3;
+    width: 30%;
+    height: 35%;
+    /* padding: 14px 18px; */
+    border-radius: 10px;
+
+    cursor: pointer;
+    display: inline-block;
+}
+    
+
+body{
+background: rgb(242, 242, 242);
+}
+
+
+
+main{
+display: flex;
+justify-content: center;
+width: 1050px;
+height: 600px;
+margin-left: 251px;
+margin-top: 105px;
+border-radius: 15px;
+
+box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
+
+background: rgb(255, 255, 255);
+}
+.form-steps{
+    position: relative;
+    margin: 16px;
+}
+.form-steps>ol{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.form-step{
+color: rgb(255, 255, 255);
+font-family: 'Ubuntu', sans-serif;
+font-size: 14px;
+/* font-weight: 700; */
+line-height: 16px;
+letter-spacing: 0.5px;
+text-align: left;
+text-transform: uppercase;
+}
+.Steps{
+color: rgb(171, 188, 255);
+font-family: 'Ubuntu', sans-serif;
+font-size: 12px;
+font-weight: 400;
+line-height: 14px;
+letter-spacing: 0px;
+text-align: left;
+}
+.step-container{
+    width: 450px;
+    background-color: var(--White);
+    border-radius: 20px;
+    position: relative;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 50px 30px;
+}
+.step-title{
+color: rgb(2, 41, 89);
+font-family: 'Ubuntu';
+font-size: 32px;
+font-weight: 700;
+line-height: 37px;
+letter-spacing: 0px;
+text-align: left;
+}
+.step-subtitle{
+color: rgb(150, 153, 170);
+font-family: 'Ubuntu';
+font-size: 16px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0px;
+text-align: left;
+}
+.input-lbl{
+display: flex;
+justify-content: space-between;
+margin: 25px 0 5px;
+color: rgb(2, 41, 89);
+font-family: 'Ubuntu';
+font-size: 14px;
+font-weight: 400;
+line-height: 16px;
+letter-spacing: 0px;
+text-align: left;
+}
+.input-field{
+    width: 450px;
+    height: 48px;
+    border-radius: 5px;
+    border-style: solid;
+    /* color: var(--Cool-gray); */
+    padding: 0px 20px;
+    outline: none;
+color: rgb(150, 153, 170);
+font-family: 'Ubuntu';
+font-size: 16px;
+font-weight: 500;
+line-height: 18px;
+letter-spacing: 0px;
+text-align: left;
+}
+
+/* add */
+
+/* Стили для toggle switch */
+
+.subscription-slider {
+  height: 60px;
+  width: 200px;
+  box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+/* switch2 */
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.toggle-container label {
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+.toggle-container input {
+  width: 100px;
+  height: 20px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ddd;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+
+  /* Стилизация слайдера */
+  cursor: pointer;
+  background: #ccc;
+  -webkit-transition: .2s;
+  transition: 0.2s;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #4caf50;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    background: #4caf50;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.toggle-container input:focus {
+  box-shadow: 0 0 0 1px #4caf50;
+}
+
+
+</style>
