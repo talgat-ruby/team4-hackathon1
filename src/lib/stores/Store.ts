@@ -26,7 +26,7 @@ const initialBilling: Billing = {
 // константа и функция с помощью которой можно изменять данные
 export const subscriptionStore = writable(initialSubscription);
 
-export function updatePlan(newplan: Plan, price) {
+export function updatePlan(newplan: Plan, price:number) {
 	subscriptionStore.update((storedata) => ({ ...storedata, plan: newplan, price }));
 }
 

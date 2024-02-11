@@ -29,7 +29,7 @@ function changePlanArc () {
 }
 
 function changebilling () {
-  updateBilling(true)
+  updateBilling()
 }
 
 </script>
