@@ -1,6 +1,4 @@
-<!-- FormSteps.svelte -->
 <script>
-    export let currentStep;
     import BgSideBar from './img/bg-sidebar-desktop.svg';
 	import BgSideBarMobile from './img/bg-sidebar-mobile.svg';
   </script>
@@ -11,10 +9,10 @@
       <img src={BgSideBarMobile} alt="" srcset="">
     </picture>
     <ol>
-      <li class="form-step" data-number="1" class:selected={$currentStep === 1}><span class="mobile-hidden"><span class="Steps">Step 1</span><br> Your info</span></li>
-      <li class="form-step" data-number="2" class:selected={$currentStep === 2}><span class="mobile-hidden"><span class="Steps">Step 2</span><br> Select plan</span></li>
-      <li class="form-step" data-number="3" class:selected={$currentStep === 3}><span class="mobile-hidden"><span class="Steps">Step 3</span><br> Add-ons</span></li>
-      <li class="form-step" data-number="4" class:selected={$currentStep === 4}><span class="mobile-hidden"><span class="Steps">Step 4</span><br> Summary</span></li>
+      <li class="form-step"  ><span class="mobile-hidden"><span class="Steps">Step 1</span><br> Your info</span></li>
+      <li class="form-step"  ><span class="mobile-hidden"><span class="Steps">Step 2</span><br> Select plan</span></li>
+      <li class="form-step" ><span class="mobile-hidden"><span class="Steps">Step 3</span><br> Add-ons</span></li>
+      <li class="form-step" ><span class="mobile-hidden"><span class="Steps">Step 4</span><br> Summary</span></li>
     </ol>
   </nav>
   
