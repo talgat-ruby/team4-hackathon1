@@ -1,6 +1,6 @@
 <script lang="ts">
 import Button from './Button.svelte';
-
+import {billingstore, updatePlan, updateBilling} from './stores/Store';
 export let subscriptionType = '';
 
 let yearsubs = false;
@@ -9,6 +9,28 @@ let yearsubs = false;
 // 	plan: Plan;
 // 	billing: 'monthly' | 'yearly';
 // };
+
+// function changePlan () {
+//   updatePlan('pro', 15)
+// }
+
+
+//примитивно через новую функцию отправляем новые данные
+function changePlan () {
+  updatePlan('pro', 15)
+}
+
+function changePlanAdv () {
+  updatePlan('advanced', 12)
+}
+
+function changePlanArc () {
+  updatePlan('arcade', 9)
+}
+
+function changebilling () {
+  updateBilling(true)
+}
 
 </script>
 
@@ -21,7 +43,7 @@ let yearsubs = false;
      
         <label class="radio-btn">
   
-          <input type="radio" value="basic" bind:group={subscriptionType} />
+          <input type="radio" value="arcade" bind:group={subscriptionType} on:click={changePlanArc} />
           Arcade
           {#if yearsubs}
           <p>2 months free</p>
@@ -29,7 +51,7 @@ let yearsubs = false;
         </label>
   
         <label class="radio-btn">
-          <input type="radio" value="advanced" bind:group={subscriptionType} />
+          <input type="radio" value="advanced" bind:group={subscriptionType} on:click={changePlanAdv} />
           Advanced
           {#if yearsubs}
           <p>2 months free</p>
@@ -37,7 +59,7 @@ let yearsubs = false;
         </label>
     
         <label class="radio-btn">
-          <input type="radio" value="pro" bind:group={subscriptionType} />
+          <input type="radio" value="pro" bind:group={subscriptionType} on:click={changePlan}/>
           Pro
           {#if yearsubs}
           <p>2 months free</p>
@@ -45,7 +67,7 @@ let yearsubs = false;
         </label>
     
   
-        {#if subscriptionType === 'basic'}
+        {#if subscriptionType === 'arcade'}
           <p>Arcade 9$.</p>
         {:else if subscriptionType === 'advanced'}
           <p>Advanced 12$.</p>
@@ -55,7 +77,7 @@ let yearsubs = false;
           <p>Select subscription type.</p>
         {/if}
 
-        <input type="checkbox" bind:checked={yearsubs} />
+        <input type="checkbox" bind:checked={yearsubs} on:click={changebilling} />
         {#if yearsubs}
 	      <p>
 		    Yearly.
@@ -65,6 +87,8 @@ let yearsubs = false;
 	      Monthly.
 	      </p>
         {/if}
+
+        <!-- <button on:click={changePlan}>Change plan</button> -->
 
     </div>
     <Button/>
