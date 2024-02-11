@@ -9,14 +9,13 @@ import './Font'
  console.log($personInfo.name , $personInfo.email ,$personInfo.phone);
  
 }
- let nameError = false;
 </script>
 
 <form on:submit|preventDefault={upDate} class="step-container">
     <h2 class="step-title">Personal info</h2>
     <p class="step-subtitle">Please provide your name, email address, and phone number.</p>
     <label for="namefield" class="input-lbl">Name </label>
-   
+
     <input required bind:value={$personInfo.name}  type="text" class="input-field"  name="name" placeholder="e.g. Stephen King" >
     
 
@@ -29,16 +28,8 @@ import './Font'
 </form>
 
 <style>
- 
-.step-container{
-    width: 450px;
-    background-color: var(--White);
-    border-radius: 20px;
-    position: relative;
-    margin-left: 100px;
-    margin-right: 100px;
-    padding: 50px 30px;
-}
+
+
 .step-title{
 color: rgb(2, 41, 89);
 font-family: 'Ubuntu';

@@ -1,5 +1,5 @@
 <script lang="ts">
-
+import Button from "./Button.svelte";
 </script>
 
 <div class="form-step md:place-self-center">
@@ -13,7 +13,7 @@
 		</p>
 	</section>
 	<nav class="form-button-wrapper justify-center">
-		
+		<Button/>
 		
 	</nav>
 </div>

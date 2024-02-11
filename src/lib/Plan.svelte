@@ -12,7 +12,7 @@ let yearsubs = false;
 
 </script>
 
-<form action="" class="step-container">
+<div class="step-container">
   
   <h2 class="step-title">Select your plan</h2>
     <p class="step-subtitle">You have the option of mounthly or yearly billing.</p>
@@ -68,7 +68,7 @@ let yearsubs = false;
 
     </div>
     <Button/>
-</form>
+  </div>
 
 
 <style>
@@ -96,64 +96,14 @@ background: rgb(197, 197, 197);
 }
     
 
-body{
-background: rgb(242, 242, 242);
-}
 
 
 
-main{
-display: flex;
-justify-content: center;
-width: 1050px;
-height: 600px;
-margin-left: 251px;
-margin-top: 105px;
-border-radius: 15px;
-
-box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
-
-background: rgb(255, 255, 255);
-}
-.form-steps{
-    position: relative;
-    margin: 16px;
-}
-.form-steps>ol{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.form-step{
-color: rgb(255, 255, 255);
-font-family: 'Ubuntu', sans-serif;
-font-size: 14px;
-/* font-weight: 700; */
-line-height: 16px;
-letter-spacing: 0.5px;
-text-align: left;
-text-transform: uppercase;
-}
-.Steps{
-color: rgb(171, 188, 255);
-font-family: 'Ubuntu', sans-serif;
-font-size: 12px;
-font-weight: 400;
-line-height: 14px;
-letter-spacing: 0px;
-text-align: left;
-}
 .step-container{
     width: 450px;
     background-color: var(--White);
     border-radius: 20px;
     position: relative;
-    margin-left: 100px;
     margin-right: 100px;
     padding: 50px 30px;
 }
@@ -175,40 +125,14 @@ line-height: 25px;
 letter-spacing: 0px;
 text-align: left;
 }
-.input-lbl{
-display: flex;
-justify-content: space-between;
-margin: 25px 0 5px;
-color: rgb(2, 41, 89);
-font-family: 'Ubuntu';
-font-size: 14px;
-font-weight: 400;
-line-height: 16px;
-letter-spacing: 0px;
-text-align: left;
-}
-.input-field{
-    width: 450px;
-    height: 48px;
-    border-radius: 5px;
-    border-style: solid;
-    /* color: var(--Cool-gray); */
-    padding: 0px 20px;
-    outline: none;
-color: rgb(150, 153, 170);
-font-family: 'Ubuntu';
-font-size: 16px;
-font-weight: 500;
-line-height: 18px;
-letter-spacing: 0px;
-text-align: left;
-}
+
+
 
 /* add */
 
 /* Стили для toggle switch */
 
-.subscription-slider {
+/* .subscription-slider {
   height: 60px;
   width: 200px;
   box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
@@ -270,7 +194,7 @@ text-align: left;
     border-radius: 50%;
   }
 
-/* switch2 */
+/* switch2 
 
 .toggle-container {
   display: flex;
@@ -294,7 +218,7 @@ text-align: left;
   transition: all 0.2s ease-in-out;
   outline: none;
 
-  /* Стилизация слайдера */
+  /* Стилизация слайдера 
   cursor: pointer;
   background: #ccc;
   -webkit-transition: .2s;
@@ -323,7 +247,7 @@ text-align: left;
 
 .toggle-container input:focus {
   box-shadow: 0 0 0 1px #4caf50;
-}
+} */
 
 
 </style>
