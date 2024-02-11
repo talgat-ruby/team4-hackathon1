@@ -1,36 +1,35 @@
 
 <script lang="ts">
-   import { personInfo } from './stores/info';
+   import { personInfo } from './stores/store-step';
 import {step} from './stores/store-step'
-import '@fontsource/ubuntu/300.css';
-import '@fontsource/ubuntu/400.css';
-import '@fontsource/ubuntu/500.css';
-import '@fontsource/ubuntu/700.css';
-
+import './Font'
 
  const upDate=()=>{step.updateStep("+");
 
  console.log($personInfo.name , $personInfo.email ,$personInfo.phone);
  
 }
- 
+ let nameError = false;
 </script>
 
 <form on:submit|preventDefault={upDate} class="step-container">
     <h2 class="step-title">Personal info</h2>
     <p class="step-subtitle">Please provide your name, email address, and phone number.</p>
     <label for="namefield" class="input-lbl">Name </label>
-    <input  bind:value={$personInfo.name} type="text" class="input-field" name="name" placeholder="e.g. Stephen King" >
+   
+    <input required bind:value={$personInfo.name}  type="text" class="input-field"  name="name" placeholder="e.g. Stephen King" >
+    
 
-    <label for="emailfield" class="input-lbl">Email Address </label>
-    <input bind:value={$personInfo.email}  type="email" class="input-field" name="email" placeholder="e.g. Stephen King" >
+    <label  for="emailfield" class="input-lbl">Email Address </label>
+    <input required bind:value={$personInfo.email}  type="email" class="input-field" name="email" placeholder="e.g. Stephen King" >
 
     <label  for="phonefield" class="input-lbl">Phone Number </label>
-    <input bind:value={$personInfo.phone}  type="tel" class="input-field" name="phone" placeholder="e.g. +1 234 567 890" >
+    <input required bind:value={$personInfo.phone}  type="tel" class="input-field" name="phone" placeholder="e.g. +1 234 567 890" >
    <button type="submit" >Next Step</button>
 </form>
 
 <style>
+ 
 .step-container{
     width: 450px;
     background-color: var(--White);
@@ -84,6 +83,22 @@ font-weight: 500;
 line-height: 18px;
 letter-spacing: 0px;
 text-align: left;
+}
+button{
+  color: rgb(255, 255, 255);
+font-family: 'Ubuntu';
+font-size: 16px;
+font-weight: 500;
+line-height: 18px;
+letter-spacing: 0px;
+margin-top: 64px;
+margin-left: 370px;   
+width: 123px;
+height: 48px;
+border-radius: 8px;
+background: rgb(2, 41, 89);
+cursor: pointer;
+
 }
 
 </style>

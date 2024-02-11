@@ -1,5 +1,4 @@
 <script>
-    // export let currentStep;
     import BgSideBar from './img/bg-sidebar-desktop.svg';
 	import BgSideBarMobile from './img/bg-sidebar-mobile.svg';
   </script>
