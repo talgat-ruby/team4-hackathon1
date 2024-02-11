@@ -87,7 +87,9 @@ function changebilling () {
 	      Monthly.
 	      </p>
         {/if}
-<br><button on:click={changePlan}>Change plan</button>
+
+        <!-- <button on:click={changePlan}>Change plan</button> -->
+
     </div>
     <Button/>
 </form>
