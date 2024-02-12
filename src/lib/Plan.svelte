@@ -1,14 +1,14 @@
 <script lang="ts">
   import Button from './Button.svelte';
   import {updatePlan, updateBilling} from './stores/Store';
+  import { plans , subscription } from "./stores/Plan-store";
+  // import Arcade from "./img/"
+  // import Pro from "../lib/img/icon-pro.svg"
+  // import Advanced from "../lib/img/icon-advanced.svg"
   
-  import Arcade from "../lib/img/icon-arcade.svg"
-  import Pro from "../lib/img/icon-pro.svg"
-  import Advanced from "../lib/img/icon-advanced.svg"
+  // export let subscriptionType = '';
   
-  export let subscriptionType = '';
-  
-  export let yearsubs = false;
+  //  export let yearsubs = false;
   
   // type Subscription = {
   // 	plan: Plan;
@@ -34,32 +34,70 @@
   }
   
   function changebilling () {
-    updateBilling(true)
+    updateBilling()
   }
   
   </script>
   
-  <form action="" class="step-container">
+  <div>
     
     <h2 class="step-title">Select your plan</h2>
       <p class="step-subtitle">You have the option of mounthly or yearly billing.</p>
       <div class="button-plan">
+        {#each plans as plan (plan.id)}
+				<button class={$subscription.plan.id === plan.id ? 'active radio-button' : 'radio-button'}
+					on:click={() => subscription.changePlan(plan)}>
+					<img src={`/imgs/icon-${plan.id}.svg`} alt={`${plan.id} plan`} />
+					<div>
+						<p>{plan.name}</p>						
+              {#if $subscription.billing === 'yearly'}
+              <p> $  {plan.monthlyPrice} /yr</p>
+              {:else}
+              <p>$ {plan.yearlyPrice} /yr</p>
+							<p>2 months free</p>
+						{/if}
+					</div>
+				</button>
+			{/each}     
+      </div>
+      <div class="checkbox-div">
+        <input type="checkbox" checked={$subscription.billing === 'monthly'}
+        on:change={() =>
+          subscription.changeBilling($subscription.billing === 'monthly' ? 'yearly' : 'monthly')} on:click={changebilling} />
+        {#if $subscription.billing === 'monthly' }
+        <p>
+        Yearly.
+        </p>
+       {:else}
+        <p>
+        Monthly.
+        </p>
+        {/if}
+      </div>
+      <br><Button/>
+    </div>
+  
+       <!-- {#each plans as plan}
+       <button
+       class={$subscription.plan.id === plan.id ? 'active radio-button' : 'radio-button'}
+       on:click={() => subscription.changePlan(plan)}
+     >
        
           <label class="radio-btn">
-            <img src={Arcade}>
+            <img src={`/imgs/icon-${plan.id}.svg`} alt={`${plan.id}`}>
             <input type="radio" value="arcade" bind:group={subscriptionType} on:click={changePlanArc} />
-            <p class="step-2-bold">Arcade</p>
+            <p class="step-2-bold">{plan.id}</p>
             {#if yearsubs===false}
-            <p class="step-2-price" >Arcade 9$.</p>
+            <p class="step-2-price" >{plan.monthlyPrice}</p>
             {:else}
-            <p class="step-2-price" >Arcade 90$.</p>
+            <p class="step-2-price" >{plan.yearlyPrice}</p>
             <p>2 months free</p>
             {/if}
             
           </label>
-    
-          <label class="radio-btn">
-            <img src={Advanced}>
+        </button> -->
+          <!-- <label class="radio-btn">
+            <img src={Advanced} alt="advanced">
             <input type="radio" value="advanced" bind:group={subscriptionType} on:click={changePlanAdv} />
             <p class="step-2-bold">Advanced</p>
             {#if yearsubs ===false}
@@ -71,7 +109,7 @@
           </label>
       
           <label class="radio-btn">
-            <img src={Pro}>
+            <img src={Pro} alt="pro">
             <input type="radio" value="pro" bind:group={subscriptionType} on:click={changePlan}/>
             <p class="step-2-bold">Pro</p>
             {#if yearsubs ===false}
@@ -80,8 +118,8 @@
             <p class="step-2-price" >Pro 150$.</p>
             <p>2 months free</p>
             {/if}
-          </label>
-    
+          </label> -->
+          <!-- {/each} -->
           <!-- {#if subscriptionType === 'arcade'}
             <p class="step-2-price" >Arcade 9$.</p>
           {:else if subscriptionType === 'advanced'}
@@ -92,45 +130,45 @@
             <p>Select subscription type.</p>
           {/if} -->
   
-          <div class="checkbox-div">
-          <input type="checkbox" bind:checked={yearsubs} on:click={changebilling} />
-          {#if yearsubs}
-          <p>
-          Yearly.
-          </p>
-         {:else}
-          <p>
-          Monthly.
-          </p>
-          {/if}
-        </div>
-          <!-- <button on:click={changePlan}>Change plan</button> -->
-      </div>
-      <br><Button/>
-  </form>
-  
-  
   <style>
-  
+  .radio-button {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid #b3b3b3; 
+    border-radius: 0.375rem; 
+    padding: 0.75rem; 
+}
+
+.radio-button:hover {
+    border-color: #6610f2; 
+}
+
+@media (min-width: 48em) {
+    .radio-button {
+        width: 33.333333%; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 1.25rem; 
+        padding-right: 2.5rem; 
+    }
+}
+
+.radio-button.active {
+    border-color: #6610f2; 
+    background-color: #f8f8f8; 
+}
+
   .button-plan {
-  width: 450px;
-  height: 160px;
-  justify-content:left;
+  /* width: 450px; */
+  /* height: 160px; */
+  display: flex;
+  justify-content:space-between;
   background: rgb(248, 248, 248);
   }
   
-  .radio-btn{
-      /* margin-top: 5px; */
-      border: none;
-      background: #aec4d6;
-      width: 138px;
-      height: 160px;
-      /* padding: 14px 18px; */
-      border-radius: 10px;
-      border: 1px solid rgb(214, 217, 230);
-      cursor: pointer;
-      display: inline-block;
-  }
+
   
   .checkbox-div {
     /* Rectangle */
@@ -145,67 +183,6 @@
   background: rgb(248, 249, 255);
   }
   
-  body{
-  background: rgb(242, 242, 242);
-  }
-  
-  
-  
-  main{
-  display: flex;
-  justify-content: center;
-  width: 1050px;
-  height: 600px;
-  margin-left: 251px;
-  margin-top: 105px;
-  border-radius: 15px;
-  
-  box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
-  
-  background: rgb(255, 255, 255);
-  }
-  .form-steps{
-      position: relative;
-      margin: 16px;
-  }
-  .form-steps>ol{
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-  }
-  .form-step{
-  color: rgb(255, 255, 255);
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  /* font-weight: 700; */
-  line-height: 16px;
-  letter-spacing: 0.5px;
-  text-align: left;
-  text-transform: uppercase;
-  }
-  .Steps{
-  color: rgb(171, 188, 255);
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0px;
-  text-align: left;
-  }
-  .step-container{
-      width: 450px;
-      background-color: var(--White);
-      border-radius: 20px;
-      position: relative;
-      margin-left: 100px;
-      margin-right: 100px;
-      padding: 50px 30px;
-  }
   .step-title{
   color: rgb(2, 41, 89);
   font-family: 'Ubuntu';
@@ -224,169 +201,8 @@
   letter-spacing: 0px;
   text-align: left;
   }
-  .input-lbl{
-  display: flex;
-  justify-content: space-between;
-  margin: 25px 0 5px;
-  color: rgb(2, 41, 89);
-  font-family: 'Ubuntu';
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0px;
-  text-align: left;
-  }
-  .input-field{
-      width: 450px;
-      height: 48px;
-      border-radius: 5px;
-      border-style: solid;
-      /* color: var(--Cool-gray); */
-      padding: 0px 20px;
-      outline: none;
-  color: rgb(150, 153, 170);
-  font-family: 'Ubuntu';
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 18px;
-  letter-spacing: 0px;
-  text-align: left;
-  }
-  .step-2-bold {
-  color: rgb(2, 41, 89);
-  font-family: 'Ubuntu';
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
-  }
-  .step-2-price {
-  color: rgb(150, 153, 170);
-  font-family: 'Ubuntu';
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-  }
-  
-  /* add */
-  
-  /* Стили для toggle switch */
-  
-  .subscription-slider {
-    height: 60px;
-    width: 200px;
-    box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
-    border-radius: 10px;
-  }
-  
-  .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
-  
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-  
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-  
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-  
-    input:checked + .slider {
-      background-color: #2196F3;
-    }
-  
-    input:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
-    }
-  
-    .slider.round {
-      border-radius: 34px;
-    }
-  
-    .slider.round:before {
-      border-radius: 50%;
-    }
-  
-  /* switch2 */
-  
-  .toggle-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .toggle-container label {
-    margin-right: 10px;
-    font-weight: normal;
-  }
-  
-  .toggle-container input {
-    width: 100px;
-    height: 20px;
-    border-radius: 10px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: #ddd;
-    transition: all 0.2s ease-in-out;
-    outline: none;
-  
-    /* Стилизация слайдера */
-    cursor: pointer;
-    background: #ccc;
-    -webkit-transition: .2s;
-    transition: 0.2s;
-  
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      background: #4caf50;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  
-    &::-moz-range-thumb {
-      -moz-appearance: none;
-      appearance: none;
-      background: #4caf50;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  }
-  
-  .toggle-container input:focus {
-    box-shadow: 0 0 0 1px #4caf50;
-  }
+ 
+
   
   
   </style>
