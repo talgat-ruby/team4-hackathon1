@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import checkMarkImg from './img/icon-checkmark.svg';
-	import { personInfo, step } from './stores/store-step'; // Импорт personInfo и step из store-step
+	import {  step } from './stores/store-step'; // Импорт  step из store-step
 
 	export let onlineServiceAddOnIsAdded = writable(false);
 	export let monthlyIsSelected = writable(true);
@@ -193,15 +193,7 @@
 		}
 	}
 
-	.AddOns-form {
-		width: 450px;
-		background-color: var(--White);
-		border-radius: 20px;
-		position: relative;
-		margin-left: 100px;
-		margin-right: 100px;
-		padding: 50px 30px;
-	}
+	
 
 	.navigation-buttons {
     display: flex;

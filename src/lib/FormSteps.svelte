@@ -1,6 +1,6 @@
 <script>
-    import BgSideBar from './img/bg-sidebar-desktop.svg';
-	import BgSideBarMobile from './img/bg-sidebar-mobile.svg';
+import BgSideBar from './img/bg-sidebar-desktop.svg';
+import BgSideBarMobile from './img/bg-sidebar-mobile.svg'
   </script>
   
   <nav class="form-steps">
@@ -20,6 +20,7 @@
     .form-steps {
       position: relative;
       margin: 16px;
+      margin-right: 100px;
     }
     .form-steps > ol {
       list-style: none;
