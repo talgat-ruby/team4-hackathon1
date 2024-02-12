@@ -6,11 +6,20 @@
 <body>
 	<main>
 		<FormSteps />
-		<App />
+		<div class="Stepss"><App /></div>
 	</main>
 </body>
 
 <style>
+	.Stepss{
+    width: 450px;
+    background-color: var(--White);
+    border-radius: 20px;
+    position: relative;
+    
+    margin-right: 100px;
+    padding: 50px 30px;
+}
 	body {
 		background: rgb(242, 242, 242);
 	}
@@ -27,4 +36,5 @@
 
 		background: rgb(255, 255, 255);
 	}
+
 </style>

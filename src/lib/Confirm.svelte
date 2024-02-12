@@ -1,15 +1,12 @@
 <script>
 	import IconThankYou from './img/icon-thank-you.svg';
-	import FormSteps from '../lib/FormSteps.svelte';
+	
 	let showComponent = false;
 	window.setTimeout(() => {
 		showComponent = true;
 	}, 0);
 </script>
-
-<body>
-	<main>
-		<FormSteps />
+	<div>
 		<article class:show={showComponent}>
 			<img src={IconThankYou} alt="Thank You" />
 			<h3>Thank you!</h3>
@@ -18,13 +15,10 @@
 				ever need support, please feel free to email us at support@loremgaming.com.
 			</p>
 		</article>
-	</main>
-</body>
+	</div>
 
 <style>
-	body {
-		background: rgb(242, 242, 242);
-	}
+	
 
 	article {
 		display: flex;
@@ -70,19 +64,7 @@
 	}
 
 	@media screen and (min-width: 1440px) {
-		main {
-			display: flex;
-			justify-content: center;
-			width: 1050px;
-			height: 600px;
-			margin-left: 251px;
-			margin-top: 105px;
-			border-radius: 15px;
-
-			box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
-
-			background: rgb(255, 255, 255);
-		}
+		
 
 		img {
 			width: 80px;
