@@ -1,13 +1,8 @@
 <script lang="ts">
   import Button from './Button.svelte';
-  import {updatePlan, updateBilling} from './stores/Store';
-  import { plans , subscription } from "./stores/Plan-store";
-  // import Arcade from "./img/"
-  // import Pro from "../lib/img/icon-pro.svg"
-  // import Advanced from "../lib/img/icon-advanced.svg"
-  
+  import { createPlanStore, plans , subscription } from "./stores/Plan-store";
+ 
   // export let subscriptionType = '';
-  
   //  export let yearsubs = false;
   
   // type Subscription = {
@@ -34,10 +29,14 @@
   }
   
   function changebilling () {
-    updateBilling()
+    subscription.changeBilling()
   }
   
-  </script>
+  function Test () {
+  console.log("text ex", $subscription);
+}
+
+</script>
   
   <div>
     
@@ -49,32 +48,34 @@
 					on:click={() => subscription.changePlan(plan)}>
 					<img src={`/imgs/icon-${plan.id}.svg`} alt={`${plan.id} plan`} />
 					<div>
-						<p>{plan.name}</p>						
+						<p>{plan.name}</p>		
               {#if $subscription.billing === 'yearly'}
-              <p> $  {plan.monthlyPrice} /yr</p>
+              <p> $ {plan.yearlyPrice} /yr</p>
+              <p>2 months free</p>
               {:else}
-              <p>$ {plan.yearlyPrice} /yr</p>
-							<p>2 months free</p>
-						{/if}
+              <p>$ {plan.monthlyPrice} /yr</p>
+						  {/if}
 					</div>
 				</button>
-			{/each}     
+			{/each}
+
       </div>
       <div class="checkbox-div">
-        <input type="checkbox" checked={$subscription.billing === 'monthly'}
+        <input type="checkbox" checked={$subscription.billing === 'yearly'}
         on:change={() =>
-          subscription.changeBilling($subscription.billing === 'monthly' ? 'yearly' : 'monthly')} on:click={changebilling} />
-        {#if $subscription.billing === 'monthly' }
+          subscription.changeBilling($subscription.billing === 'yearly' ? 'monthly' :  'yearly')} />
+        {#if $subscription.billing === 'yearly' }
         <p>
-        Yearly.
+          Yearly.
         </p>
        {:else}
         <p>
-        Monthly.
+          Monthly.
         </p>
         {/if}
       </div>
-      <br><Button/>
+      <p>Show selected console.log </p><input type="checkbox" on:click={Test}> 
+      <br><Button />
     </div>
   
        <!-- {#each plans as plan}
