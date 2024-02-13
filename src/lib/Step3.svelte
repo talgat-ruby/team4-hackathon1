@@ -2,6 +2,7 @@
 	import { writable } from 'svelte/store';
 	import checkMarkImg from './img/icon-checkmark.svg';
 	import {  step } from './stores/store-step'; // Импорт  step из store-step
+	import { createPlanStore, plans , subscription, addons } from "./stores/Plan-store";
 
 	export let onlineServiceAddOnIsAdded = writable(false);
 	export let monthlyIsSelected = writable(true);
@@ -21,6 +22,11 @@
 	const goBack = () => {
 		step.updateStep('-'); // Переход на предыдущий шаг
 	};
+
+	function Test () {
+				console.log("text ex", $subscription);
+			  }
+
 </script>
 
 <main>
@@ -42,7 +48,7 @@
 					<p class="choice-info-1">Online service</p>
 					<p class="choice-info-2">Access to multiplayer games</p>
 				</div>
-				{#if $monthlyIsSelected}
+				{#if $subscription.billing === 'monthly'}
 					<p class="price">+$1/mo</p>
 				{:else}
 					<p class="price">+$10/yr</p>
@@ -62,7 +68,7 @@
 					<p class="choice-info-1">Larger storage</p>
 					<p class="choice-info-2">Extra 1TB of cloud save</p>
 				</div>
-				{#if $monthlyIsSelected}
+				{#if $subscription.billing === 'monthly'}
 					<p class="price">+$2/mo</p>
 				{:else}
 					<p class="price">+$20/yr</p>
@@ -82,12 +88,22 @@
 					<p class="choice-info-1">Customizable profile</p>
 					<p class="choice-info-2">Custom theme on your profile</p>
 				</div>
-				{#if $monthlyIsSelected}
+				{#if $subscription.billing === 'monthly'}
 					<p class="price">+$2/mo</p>
 				{:else}
 					<p class="price">+$20/yr</p>
 				{/if}
 			</button>
+
+			{#each addons as addon (addon.id)}
+			<button class={$subscription.addon.id === addon.id ? "AddOns-choice" : "AddOns-choice"}
+				on:click={() => subscription.changeAddon(addon)}>
+				<p>{addon.name}</p>	
+				<input type="checkbox" on:change={subscription.changeAddon(addon)}/>				
+			</button>
+		   {/each}
+
+			<p>Show selected console.log </p><input type="checkbox" on:click={Test}> 
 		</div>
 		<div class="navigation-buttons">
 			<button type="button" class="go-back" on:click={goBack}>Go Back</button>

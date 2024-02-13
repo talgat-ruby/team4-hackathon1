@@ -10,6 +10,7 @@ type Plan = {
 type Subscription = {
 	plan: Plan;
 	billing: 'monthly' | 'yearly';
+	addon: Addon;
 };
 
 const plans: Plan[] = [
@@ -18,9 +19,23 @@ const plans: Plan[] = [
 	{ id: 'pro', name: 'Pro', monthlyPrice: 15, yearlyPrice: 150 }
 ];
 
+type Addon = {
+	id: 'online' | 'storage' | 'customprofile';
+	name: string;
+	monthlyPrice: number;
+	yearlyPrice: number;
+};
+
+const addons: Addon[] = [
+	{ id: 'online', name: 'Online service', monthlyPrice: 1, yearlyPrice: 10 },
+	{ id: 'storage', name: 'Larger storage', monthlyPrice: 2, yearlyPrice: 20 },
+	{ id: 'customprofile', name: 'Custom profile', monthlyPrice: 2, yearlyPrice: 20 }
+];
+
 const Value: Subscription = {
 	plan: plans[0],
-	billing: 'monthly'
+	billing: 'monthly',
+	addon: addons[0]
 };
 
 export const createPlanStore = () => {
@@ -41,13 +56,22 @@ export const createPlanStore = () => {
 			return newBilling;
 		});
 	};
+
+	const changeAddon = (addon: Addon) => {
+		update((val2) => {
+			const newAddon = { addon };
+			return newAddon;
+		});
+	};
+
 	return {
 		subscribe,
 		changePlan,
-		changeBilling
+		changeBilling,
+		changeAddon
 	};
 };
 
 const subscription = createPlanStore();
 
-export { plans, subscription };
+export { plans, subscription, addons };
